@@ -7,7 +7,7 @@
 Pune, Maharashtra, India
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=apple&logoColor=white)](https://gauravverma1998.github.io/)
-[![Resume](https://img.shields.io/badge/Resume-0071e3?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](gauravresume.pdf)
+[![Resume](https://img.shields.io/badge/Resume-0071e3?style=for-the-badge)](gauravresume.pdf)
 [![Email](https://img.shields.io/badge/Email-D44638?style=for-the-badge&logo=gmail&logoColor=white)](mailto:mayuverm11@gmail.com)
 
 </div>
@@ -35,13 +35,13 @@ Optimized application performance and reduced memory usage by ~25–30%. Built s
 
 <p>
   <img src="https://cdn.simpleicons.org/dotnet/512BD4" height="32" alt=".NET" title=".NET" />
-  <img src="https://cdn.simpleicons.org/csharp/239120" height="32" alt="C#" title="C#" />
-  <img src="https://cdn.simpleicons.org/xaml/0C54C2" height="32" alt="XAML" title="XAML" />
+  <img src="https://cdn.simpleicons.org/sharp/239120" height="32" alt="C#" title="C#" />
+  <img src="https://cdn.simpleicons.org/nuget/004880" height="32" alt="NuGet" title="NuGet" />
   <img src="https://cdn.simpleicons.org/git/F05032" height="32" alt="Git" title="Git" />
+  <img src="https://cdn.simpleicons.org/github/181717" height="32" alt="GitHub" title="GitHub" />
   <img src="https://cdn.simpleicons.org/bitbucket/0052CC" height="32" alt="Bitbucket" title="Bitbucket" />
   <img src="https://cdn.simpleicons.org/jenkins/D24939" height="32" alt="Jenkins" title="Jenkins" />
-  <img src="https://cdn.simpleicons.org/jira/0052CC" height="32" alt="JIRA" title="JIRA" />
-  <img src="https://cdn.simpleicons.org/xunitdotnet/512BD4" height="32" alt="xUnit" title="xUnit" />
+  <img src="https://cdn.simpleicons.org/jirasoftware/0052CC" height="32" alt="JIRA" title="JIRA" />
 </p>
 
 **Core:** .NET · C# · WPF · .NET Framework · MVVM · XAML · OOP · Data Structures
