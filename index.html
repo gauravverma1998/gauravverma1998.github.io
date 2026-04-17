@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gaurav Verma — Software Developer</title>
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Fonts ── */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+    :root {
+      --black:       #000000;
+      --near-black:  #1d1d1f;
+      --light-gray:  #f5f5f7;
+      --white:       #ffffff;
+      --blue:        #0071e3;
+      --blue-link-l: #0066cc;
+      --blue-link-d: #2997ff;
+      --body-80:     rgba(0,0,0,0.80);
+      --body-48:     rgba(0,0,0,0.48);
+      --dark-card:   #272729;
+      --shadow:      rgba(0,0,0,0.22) 3px 5px 30px 0px;
+      --font:        'SF Pro Display','SF Pro Text','Inter','Helvetica Neue',Helvetica,Arial,sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--black);
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 48px;
+      background: rgba(0,0,0,0.80);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 1000;
+    }
+
+    nav .logo {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: -0.2px;
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+    }
+
+    nav ul a {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      letter-spacing: -0.1px;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--white); }
+
+    /* ── Sections ── */
+    section {
+      width: 100%;
+      padding: 100px 24px;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    /* ── Hero ── */
+    #hero {
+      background: var(--black);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 48px;
+    }
+
+    #hero .container { text-align: center; }
+
+    .hero-eyebrow {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--blue-link-d);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-name {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 600;
+      line-height: 1.07;
+      letter-spacing: -0.28px;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: clamp(21px, 3vw, 28px);
+      font-weight: 400;
+      line-height: 1.14;
+      letter-spacing: 0.196px;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 12px;
+    }
+
+    .hero-location {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.48);
+      letter-spacing: -0.224px;
+      margin-bottom: 40px;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+      font-family: var(--font);
+      font-size: 17px;
+      font-weight: 400;
+      padding: 8px 22px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: #0077ed; }
+
+    .btn-pill {
+      background: transparent;
+      color: var(--blue-link-d);
+      font-family: var(--font);
+      font-size: 17px;
+      font-weight: 400;
+      padding: 7px 20px;
+      border-radius: 980px;
+      border: 1px solid var(--blue-link-d);
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .btn-pill:hover { opacity: 0.8; }
+
+    /* ── Section headings ── */
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .section-heading {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 600;
+      line-height: 1.10;
+      letter-spacing: -0.28px;
+      margin-bottom: 48px;
+    }
+
+    /* ── About ── */
+    #about {
+      background: var(--light-gray);
+    }
+
+    #about .section-label { color: var(--blue-link-l); }
+    #about .section-heading { color: var(--near-black); }
+
+    .about-layout {
+      display: flex;
+      align-items: flex-end;
+      gap: 64px;
+    }
+
+    .about-content { flex: 1; min-width: 0; }
+
+    .about-photo {
+      flex-shrink: 0;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: #e0e0e0;
+    }
+
+    .about-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transform: translateY(-12%);
+    }
+
+    @media (max-width: 640px) {
+      .about-layout { flex-direction: column-reverse; align-items: center; gap: 32px; }
+      .about-photo { width: 140px; height: 140px; }
+    }
+
+    .about-body {
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: -0.374px;
+      color: var(--body-80);
+    }
+
+    /* ── Experience ── */
+    #experience { background: var(--black); }
+
+    #experience .section-label { color: var(--blue-link-d); }
+    #experience .section-heading { color: var(--white); }
+
+    .timeline { display: flex; flex-direction: column; gap: 32px; }
+
+    .timeline-item {
+      background: var(--dark-card);
+      border-radius: 12px;
+      padding: 36px 40px;
+      box-shadow: var(--shadow);
+    }
+
+    .timeline-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .timeline-company {
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1.19;
+      letter-spacing: 0.231px;
+      color: var(--white);
+    }
+
+    .timeline-date {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.48);
+      letter-spacing: -0.224px;
+      white-space: nowrap;
+    }
+
+    .timeline-role {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--blue-link-d);
+      letter-spacing: -0.224px;
+      margin-bottom: 20px;
+    }
+
+    .timeline-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .timeline-list li {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: -0.224px;
+      color: rgba(255,255,255,0.72);
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .timeline-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--blue-link-d);
+      font-size: 12px;
+      top: 2px;
+    }
+
+    /* ── Skills ── */
+    #skills { background: var(--light-gray); }
+    #skills .section-label { color: var(--blue-link-l); }
+    #skills .section-heading { color: var(--near-black); }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-tag {
+      background: var(--white);
+      color: var(--near-black);
+      font-size: 14px;
+      font-weight: 400;
+      padding: 8px 18px;
+      border-radius: 980px;
+      letter-spacing: -0.224px;
+      box-shadow: var(--shadow);
+    }
+
+    /* ── Education ── */
+    #education { background: var(--black); }
+    #education .section-label { color: var(--blue-link-d); }
+    #education .section-heading { color: var(--white); }
+
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .edu-card {
+      background: var(--dark-card);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: var(--shadow);
+    }
+
+    .edu-degree {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--blue-link-d);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .edu-school {
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1.19;
+      letter-spacing: 0.231px;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .edu-field {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.72);
+      letter-spacing: -0.224px;
+      margin-bottom: 12px;
+    }
+
+    .edu-period {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.48);
+      letter-spacing: -0.12px;
+    }
+
+    /* ── Certifications ── */
+    #certifications { background: var(--light-gray); }
+    #certifications .section-label { color: var(--blue-link-l); }
+    #certifications .section-heading { color: var(--near-black); }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .cert-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: var(--shadow);
+    }
+
+    .cert-badge {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--blue-link-l);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .cert-title {
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1.19;
+      letter-spacing: 0.231px;
+      color: var(--near-black);
+      margin-bottom: 10px;
+    }
+
+    .cert-desc {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: -0.224px;
+      color: var(--body-80);
+    }
+
+    /* ── Contact ── */
+    #contact {
+      background: var(--black);
+      text-align: center;
+    }
+
+    #contact .section-label { color: var(--blue-link-d); }
+    #contact .section-heading { color: var(--white); }
+
+    .contact-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .contact-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.48);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .contact-value {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--blue-link-d);
+      text-decoration: none;
+      letter-spacing: -0.374px;
+    }
+
+    .contact-value:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.32);
+      letter-spacing: -0.12px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      nav ul { display: none; }
+      section { padding: 80px 20px; }
+      .timeline-item { padding: 28px 24px; }
+      .edu-card, .cert-card { padding: 24px 20px; }
+      .timeline-meta { flex-direction: column; }
+    }
+
+    /* ── Scroll fade-in ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="#hero" class="logo">GV</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="container">
+      <p class="hero-eyebrow fade-in">Software Developer · 4 Years Experience</p>
+      <h1 class="hero-name fade-in">Gaurav Verma</h1>
+      <p class="hero-title fade-in">.NET · C# · WPF · Desktop Engineering</p>
+      <p class="hero-location fade-in">Pune, Maharashtra, India</p>
+      <div class="cta-group fade-in">
+        <a href="#experience" class="btn-primary">View Experience</a>
+        <a href="gauravresume.pdf" class="btn-pill" download>Download Resume</a>
+        <a href="#contact" class="btn-pill">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <p class="section-label fade-in">About</p>
+      <h2 class="section-heading fade-in">Built for precision.<br>Driven by craft.</h2>
+      <div class="about-layout">
+        <div class="about-content">
+          <p class="about-body fade-in">
+            Detail-oriented .NET Developer with 4 years of experience specializing in C# and WPF.
+            Proven ability to design, develop, and maintain robust software applications using the
+            .NET framework — creating efficient, scalable solutions. Passionate about emerging
+            technologies and continuously enhancing skills to drive innovation.
+          </p>
+        </div>
+        <div class="about-photo fade-in">
+          <!-- Add photo src when ready: <img src="photo.jpg" alt="Gaurav Verma" /> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <div class="container">
+      <p class="section-label fade-in">Experience</p>
+      <h2 class="section-heading fade-in">Three years.<br>One mission.</h2>
+      <div class="timeline">
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-meta">
+            <span class="timeline-company">Renishaw Metrology Systems</span>
+            <span class="timeline-date">Jan 2024 — Present</span>
+          </div>
+          <p class="timeline-role">Software Developer</p>
+          <ul class="timeline-list">
+            <li>Optimized application performance and reduced memory usage by ~25–30% and ~20–25%, improving response times and data handling efficiency</li>
+            <li>Investigated and resolved high-priority production issues ensuring minimal downtime and enhanced system reliability</li>
+            <li>Conducted detailed code reviews and enforced clean coding practices, enhancing code quality and maintainability</li>
+            <li>Contributed to system design and architecture decisions, participating in sprint planning and technical meetings</li>
+            <li>Designed and developed reusable, scalable UI components using WPF and XAML, improving application usability</li>
+            <li>Refactored legacy modules to reduce technical debt, leading to improved maintainability and performance</li>
+            <li>Collaborated with cross-functional teams to deliver robust, user-focused features on time</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-meta">
+            <span class="timeline-company">Renishaw Metrology Systems</span>
+            <span class="timeline-date">Jan 2023 — Dec 2023</span>
+          </div>
+          <p class="timeline-role">Graduate Software Engineer</p>
+          <ul class="timeline-list">
+            <li>Designed and implemented a Compare Mode feature enabling side-by-side visualization of data trees, improving data analysis efficiency</li>
+            <li>Enhanced data clarity by introducing visual differentiation for mismatched data, reducing manual comparison effort</li>
+            <li>Refactored legacy code to improve maintainability, performance, and readability</li>
+            <li>Diagnosed and resolved bugs, contributing to application stability and reduced issue turnaround time</li>
+            <li>Collaborated with cross-functional teams to deliver high-quality, scalable software solutions</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-meta">
+            <span class="timeline-company">Renishaw Metrology Systems</span>
+            <span class="timeline-date">Jan 2022 — Dec 2022</span>
+          </div>
+          <p class="timeline-role">Trainee Software Engineer</p>
+          <ul class="timeline-list">
+            <li>Strengthened core expertise in C#, OOP, MVVM architecture, and XAML, building a strong WPF development foundation</li>
+            <li>Improved data processing speed by 70% by developing a WPF Tree View with expandable parent-child nodes</li>
+            <li>Built an intuitive UI to represent hierarchical relationships, enhancing user interaction and navigation</li>
+            <li>Developed a Map Review module for consolidated visualization of multiple entity data, improving accessibility and decision-making</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="container">
+      <p class="section-label fade-in">Skills</p>
+      <h2 class="section-heading fade-in">The stack.<br>Every tool, mastered.</h2>
+      <div class="skills-grid fade-in">
+        <span class="skill-tag">.NET</span>
+        <span class="skill-tag">C#</span>
+        <span class="skill-tag">WPF</span>
+        <span class="skill-tag">.NET Framework</span>
+        <span class="skill-tag">MVVM</span>
+        <span class="skill-tag">XAML</span>
+        <span class="skill-tag">Data Structures</span>
+        <span class="skill-tag">OOP</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">xUnit</span>
+        <span class="skill-tag">Prism</span>
+        <span class="skill-tag">Visual Studio</span>
+        <span class="skill-tag">JIRA</span>
+        <span class="skill-tag">Bitbucket</span>
+        <span class="skill-tag">Jenkins</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <div class="container">
+      <p class="section-label fade-in">Education</p>
+      <h2 class="section-heading fade-in">Foundation.<br>Built at premier institutions.</h2>
+      <div class="edu-grid">
+
+        <div class="edu-card fade-in">
+          <p class="edu-degree">B.Tech · Engineering</p>
+          <p class="edu-school">National Institute of Technology Uttarakhand</p>
+          <p class="edu-field">Mechanical Engineering</p>
+          <p class="edu-period">Aug 2018 — May 2022</p>
+        </div>
+
+        <div class="edu-card fade-in">
+          <p class="edu-degree">12th · CBSE</p>
+          <p class="edu-school">DAV Public School</p>
+          <p class="edu-field">Uttarakhand</p>
+          <p class="edu-period">Jan 2016 — Dec 2016</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications">
+    <div class="container">
+      <p class="section-label fade-in">Certifications</p>
+      <h2 class="section-heading fade-in">Beyond the classroom.</h2>
+      <div class="cert-grid">
+
+        <div class="cert-card fade-in">
+          <p class="cert-badge">Seminar · IIT Roorkee</p>
+          <p class="cert-title">ISMSA 2019</p>
+          <p class="cert-desc">
+            Attended seminar on Inflatable Structures and Materials for Space Applications.
+            Organized by ISRO–IITR STC · November 2019.
+          </p>
+        </div>
+
+        <div class="cert-card fade-in">
+          <p class="cert-badge">Workshop · IIT Roorkee</p>
+          <p class="cert-title">Product Design Workshop</p>
+          <p class="cert-desc">
+            5-day hands-on workshop: <em>Understanding Product Design: A Hands-on Approach.</em>
+            NIT Uttarakhand + IIT Roorkee · June 17–21, 2019.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label fade-in">Contact</p>
+      <h2 class="section-heading fade-in">Let's build<br>something great.</h2>
+      <div class="contact-links fade-in">
+
+        <div class="contact-item">
+          <span class="contact-label">Email</span>
+          <a href="mailto:mayuverm11@gmail.com" class="contact-value">mayuverm11@gmail.com</a>
+        </div>
+
+        <div class="contact-item">
+          <span class="contact-label">Phone</span>
+          <a href="tel:+918107107793" class="contact-value">+91 81071 07793</a>
+        </div>
+
+        <div class="contact-item">
+          <span class="contact-label">Location</span>
+          <span class="contact-value" style="cursor:default">Pune, Maharashtra</span>
+        </div>
+
+        <div class="contact-item">
+          <span class="contact-label">Resume</span>
+          <a href="gauravresume.pdf" class="contact-value" download>Download PDF</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2024 Gaurav Verma. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Scroll-triggered fade-in
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
